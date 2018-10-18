@@ -1,14 +1,12 @@
-
-DIR="${0%/*}"
 if [ -z $1 ]; then
   echo "A path is required!"
   exit 1
 fi
 
-NAME=${1##*/}
+NAME=$(basename ${1})
 
 # Reading project infos
-echo '
+echo -n '
 Welcome to the typescript/jest node template creation!
 Which package manager do you use? [yarn/npm] (yarn):'
 read PKG_MNG
@@ -26,31 +24,33 @@ else
   exit 1
 fi
 if [ -z $(which ${PKG_MNG}) ]; then
-  echo "I think you don't have this package manager <.<"
+  echo "You must have ${PKG_MNG} installed!"
   exit 1
 fi
-echo "Initialize git repository? [y/n] (n)"
-read GIT
-echo 'Insert project infos'
-echo "Description ():"
+echo -n "Initialize git repository? [y/n] (n): "
+read -n 1 GIT
+echo '
+
+Insert project infos. These are all optional, default values in brackets.'
+echo -n "Description (): "
 read DESC
 DESC=${DESC:=''}
-echo "Version (1.0.0):"
+echo -n "Version (1.0.0): "
 read VERSION
 VERSION=${VERSION:='1.0.0'}
-echo "License (MIT):"
+echo -n "License (MIT): "
 read LICENSE
 LICENSE=${LICENSE:='MIT'}
-echo "Author ():"
+echo -n "Author (): "
 read AUTHOR
-echo "Entry point (main.ts):"
+echo -n "Path to entry point (index.ts): "
 read ENTRY
-ENTRY=${ENTRY:='main.ts'}
-echo "Dependencies (space separated):"
+ENTRY=${ENTRY:='index.ts'}
+echo "Dependencies, space separated: "
 read DEP
-echo "Docs folder (docs):"
+echo -n "Docs folder (docs): "
 read DOCS_FOLDER
 DOCS_FOLDER=${DOCS_FOLDER:='docs'}
-echo "Source folder (src):"
+echo -n "Source folder (src): "
 read SRC
 SRC=${SRC:='src'}

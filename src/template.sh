@@ -23,7 +23,7 @@ TS_CONFIG='{
 }
 '
 
-MAIN='./bin/main.js'
+MAIN='./bin/index.js'
 PROGRAMS='./node_modules/.bin'
 
 PACKAGE='{
